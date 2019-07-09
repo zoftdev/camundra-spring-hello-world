@@ -1,0 +1,13 @@
+camunda:
+  bpm:
+    enabled: true
+    process-engine-name: default
+    
+    admin-user:
+      id: admin
+      password: admin
+      firstName: Mr.Demo
+    filter:
+      create: All tasks
+    job-execution:
+      lock-time-in-millis: 90000
