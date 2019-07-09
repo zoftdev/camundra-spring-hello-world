@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.history.HistoricVariableInstance;
 import org.camunda.bpm.engine.test.Deployment;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
 import org.camunda.bpm.extension.process_test_coverage.junit.rules.ProcessCoverageInMemProcessEngineConfiguration;
@@ -69,7 +70,11 @@ public class RamdomTest {
         rt.startProcessInstanceByKey("randomProcess",variables);
         assertEquals(0, rt.createProcessInstanceQuery().count());
         assertEquals(1,processEngine.getHistoryService().createHistoricProcessInstanceQuery().count(),1);   
-        Object random=processEngine.getHistoryService().createHistoricVariableInstanceQuery().variableName("random").singleResult();
-        assertEquals("5",random);   
+        String id=(processEngine.getHistoryService().createHistoricProcessInstanceQuery().singleResult().getProcessDefinitionId());
+        HistoricVariableInstance random=processEngine.getHistoryService().createHistoricVariableInstanceQuery().variableName("random").singleResult();        
+        assertEquals(5,random.getValue());
+        HistoricVariableInstance username=processEngine.getHistoryService().createHistoricVariableInstanceQuery().variableName("username").singleResult();        
+        assertEquals("hlex",username.getValue());
+
     }    
 }
