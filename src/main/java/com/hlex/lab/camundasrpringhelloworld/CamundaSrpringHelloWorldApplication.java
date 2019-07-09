@@ -3,13 +3,11 @@ package com.hlex.lab.camundasrpringhelloworld;
 import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
-import org.camunda.bpm.spring.boot.starter.event.PostDeployEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.event.EventListener;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @EnableWebSecurity
@@ -30,10 +28,10 @@ public class CamundaSrpringHelloWorldApplication  {
 	@Autowired
 	RepositoryService repositoryService;
     
-	@EventListener
-	public void launchProcess(PostDeployEvent postDeployEvent){		
+	// @EventListener
+	// public void launchProcess(PostDeployEvent postDeployEvent){		
 		
-		 runtimeService.startProcessInstanceByKey("ProcessAnsible2");
+	// 	 runtimeService.startProcessInstanceByKey("ProcessAnsible2");
 		
-	}
+	// }
 }

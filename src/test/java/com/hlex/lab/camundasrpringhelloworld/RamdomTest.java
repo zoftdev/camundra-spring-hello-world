@@ -12,7 +12,6 @@ import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.history.HistoricVariableInstance;
 import org.camunda.bpm.engine.test.Deployment;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
-import org.camunda.bpm.extension.process_test_coverage.junit.rules.ProcessCoverageInMemProcessEngineConfiguration;
 import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRuleBuilder;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -22,8 +21,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -38,17 +35,6 @@ public class RamdomTest {
 
     @Autowired
     ProcessEngine processEngine;
-
-    @Configuration
-    public class Config{
-
-        @Bean
-        ProcessCoverageInMemProcessEngineConfiguration processEngineConfiguration(){
-        return new  ProcessCoverageInMemProcessEngineConfiguration();
-        }
-    }
-    
-
      
     @Rule
     @ClassRule
