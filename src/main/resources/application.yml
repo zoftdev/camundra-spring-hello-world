@@ -1,13 +1,17 @@
-logging.level.root: DEBUG      
-scamunda:
+# logging.level.root: DEBUG      
+logging:
+  level:
+    org.camunda: DEBUG
+camunda:
   bpm:
     # enabled: true
     process-engine-name: default
     
     admin-user:
-      id: demo2
-      password: demo2
+      id: hlex2
+      password: notneed
       firstName: Mr.Demo
+     
     filter:
       create: All tasks
     job-execution:

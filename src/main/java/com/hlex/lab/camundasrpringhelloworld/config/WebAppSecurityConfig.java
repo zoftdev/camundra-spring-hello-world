@@ -10,15 +10,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import java.util.Collections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Configuration
 @Order(SecurityProperties.BASIC_AUTH_ORDER - 15)
 public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    Logger logger=LoggerFactory.getLogger(this.getClass());
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .antMatcher("/app/**")
+                // .antMatcher("/app/**")
+                .antMatcher("/**")
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic();// this is just an example, use any auth mechanism you like
@@ -26,13 +31,15 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public FilterRegistrationBean containerBasedAuthenticationFilter(){
-
-        FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
+    public FilterRegistrationBean<ContainerBasedAuthenticationFilter> containerBasedAuthenticationFilter(){
+        logger.info("register FilterRegistrationBean<ContainerBasedAuthenticationFilter> ");
+        FilterRegistrationBean<ContainerBasedAuthenticationFilter> filterRegistration = new FilterRegistrationBean<>();
         filterRegistration.setFilter(new ContainerBasedAuthenticationFilter());
-        filterRegistration.setInitParameters(Collections.singletonMap("authentication-provider", "com.hlex.lab.camundasrpringhelloworld.filter.SpringSecurityAuthenticationProvider"));
+        filterRegistration.setInitParameters(Collections.singletonMap("authentication-provider", "com.hlex.lab.camundasrpringhelloworld.filter.MyAuthenticationMockAdapter"));
+        // filterRegistration.setInitParameters(Collections.singletonMap("authentication-provider", "com.hlex.lab.camundasrpringhelloworld.filter.SpringSecurityAuthenticationProvider"));
         filterRegistration.setOrder(101); // make sure the filter is registered after the Spring Security Filter Chain
-        filterRegistration.addUrlPatterns("/app/*");
+        // filterRegistration.addUrlPatterns("/app/*");
+        filterRegistration.addUrlPatterns("/*");
         return filterRegistration;
     }
 }

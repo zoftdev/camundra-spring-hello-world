@@ -29,8 +29,8 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public FilterRegistrationBean statelessUserAuthenticationFilter(){
-        FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
+    public FilterRegistrationBean<StatelessUserAuthenticationFilter> statelessUserAuthenticationFilter(){
+        FilterRegistrationBean<StatelessUserAuthenticationFilter> filterRegistration = new FilterRegistrationBean<>();
         filterRegistration.setFilter(new StatelessUserAuthenticationFilter());
         filterRegistration.setOrder(102); // make sure the filter is registered after the Spring Security Filter Chain
         filterRegistration.addUrlPatterns("/rest/*");

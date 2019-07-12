@@ -56,7 +56,7 @@ public class RamdomTest {
         rt.startProcessInstanceByKey("randomProcess",variables);
         assertEquals(0, rt.createProcessInstanceQuery().count());
         assertEquals(1,processEngine.getHistoryService().createHistoricProcessInstanceQuery().count(),1);   
-        String id=(processEngine.getHistoryService().createHistoricProcessInstanceQuery().singleResult().getProcessDefinitionId());
+        // String id=(processEngine.getHistoryService().createHistoricProcessInstanceQuery().singleResult().getProcessDefinitionId());
         HistoricVariableInstance random=processEngine.getHistoryService().createHistoricVariableInstanceQuery().variableName("random").singleResult();        
         assertEquals(5,random.getValue());
         HistoricVariableInstance username=processEngine.getHistoryService().createHistoricVariableInstanceQuery().variableName("username").singleResult();        
