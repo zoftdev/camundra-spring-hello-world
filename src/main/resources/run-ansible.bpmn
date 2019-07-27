@@ -24,7 +24,7 @@
       <bpmn:outgoing>SequenceFlow_1cioc3e</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_12y9eg4" sourceRef="Task_0lzqlqe" targetRef="Task_0dsibtf" />
-    <bpmn:userTask id="Task_0lzqlqe" name="Verify Input" camunda:candidateGroups="admin-group">
+    <bpmn:userTask id="Task_0lzqlqe" name="Verify Input" camunda:candidateGroups="dosadmin">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_19dqkc9" label="addition param" type="string" />

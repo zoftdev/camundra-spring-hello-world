@@ -25,7 +25,7 @@ public class MyAuthenticationMockAdapter extends ContainerBasedAuthenticationPro
         String name="hlex";
         String roles[]= new String[] {"camunda-admin","employee","dosadmin"};
         authenticationResult.setGroups(Arrays.asList( roles));
-        userUtil.autocreate(engine,name,roles);
+        userUtil.autoCreateUser(engine,name,roles);
         // engine.getIdentityService().newUser(userId)
         return authenticationResult;
 

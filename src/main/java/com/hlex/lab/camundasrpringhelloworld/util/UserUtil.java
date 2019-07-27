@@ -13,30 +13,35 @@ import org.camunda.bpm.engine.identity.User;
  */
 public class UserUtil {
 
-	public User autocreate(ProcessEngine engine, String name, String[] role) {
+	public void autoCreateUser(ProcessEngine engine, String name, String[] roles) {
         
       User singleResult =  engine.getIdentityService().createUserQuery().userId(name).singleResult();
-      if (singleResult != null) {
-        return singleResult;
+      if (singleResult == null) {
+        
+      
+
+        User user = engine.getIdentityService().newUser(name);
+        user.setFirstName(name);
+        user.setLastName(name);
+        user.setPassword("---");
+        user.setEmail("demo@camunda.org");
+        engine.getIdentityService().saveUser(user); 
+        for (String role : roles) {
+          engine.getIdentityService().deleteMembership(name, role);
+          engine.getIdentityService().createMembership(name, role);  
+        }   
       }
 
-      User user = engine.getIdentityService().newUser(name);
-      user.setFirstName(name);
-      user.setLastName(name);
-      user.setPassword("---");
-      user.setEmail("demo@camunda.org");
-      engine.getIdentityService().saveUser(user);
-      autoCreateRole(engine,role);
       
+      
+               
       // engine.getIdentityService().newGroup(role);
 
-      return user;
+     
 	}
 
-  private void autoCreateRole(ProcessEngine engine, String[] roles) {
+  public void autoCreateRole(ProcessEngine engine, String[] roles) {
       
-    List<Group> test=engine.getIdentityService().createGroupQuery().list();
-
     //default group is camnunda-admin|system
     // foreach group - create if miss, join to group
     List<Group> group=engine.getIdentityService().createGroupQuery().groupIdIn(roles).list();

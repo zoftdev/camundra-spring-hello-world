@@ -18,6 +18,7 @@ public class CamundaSrpringHelloWorldApplication  {
 	Logger logger=LoggerFactory.getLogger(this.getClass());
 	
 	public static void main(String[] args) {
+		
 		SpringApplication.run(CamundaSrpringHelloWorldApplication.class, args);
 	}
 

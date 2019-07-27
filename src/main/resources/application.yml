@@ -4,13 +4,16 @@ logging:
     org.camunda: DEBUG
 camunda:
   bpm:
+    authorization:
+      enabled: true
     # enabled: true
     process-engine-name: default
-    
+    database:
+      type:
     admin-user:
-      id: hlex2
-      password: notneed
-      firstName: Mr.Demo
+      id: admin
+      password: password
+      firstName: admin
      
     filter:
       create: All tasks

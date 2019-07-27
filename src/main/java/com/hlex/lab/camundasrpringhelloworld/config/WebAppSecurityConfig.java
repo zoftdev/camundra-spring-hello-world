@@ -35,7 +35,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
         logger.info("register FilterRegistrationBean<ContainerBasedAuthenticationFilter> ");
         FilterRegistrationBean<ContainerBasedAuthenticationFilter> filterRegistration = new FilterRegistrationBean<>();
         filterRegistration.setFilter(new ContainerBasedAuthenticationFilter());
-        filterRegistration.setInitParameters(Collections.singletonMap("authentication-provider", "com.hlex.lab.camundasrpringhelloworld.filter.MyAuthenticationMockAdapter"));
+        filterRegistration.setInitParameters(Collections.singletonMap("authentication-provider", "com.hlex.lab.camundasrpringhelloworld.filter.SpringSecurityAuthenticationCopyGroup"));
         // filterRegistration.setInitParameters(Collections.singletonMap("authentication-provider", "com.hlex.lab.camundasrpringhelloworld.filter.SpringSecurityAuthenticationProvider"));
         filterRegistration.setOrder(101); // make sure the filter is registered after the Spring Security Filter Chain
         // filterRegistration.addUrlPatterns("/app/*");

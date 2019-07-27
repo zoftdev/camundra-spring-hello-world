@@ -15,8 +15,11 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder().username("demo2").password("demo2").roles("ACTUATOR", "camunda-admin").build());
+        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("password").roles("employee").build());
+        manager.createUser(User.withDefaultPasswordEncoder().username("dosadmin1").password("password").roles("employee").build());
         manager.createUser(User.withDefaultPasswordEncoder().username("john").password("john").roles("camunda-user","admin-group").build());
+        manager.createUser(User.withDefaultPasswordEncoder().username("admin").password("password").roles("camunda-admin").build());
+        
         return manager;
 
 

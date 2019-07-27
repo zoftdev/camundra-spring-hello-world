@@ -26,6 +26,9 @@ public class SpringSecurityAuthenticationProvider extends ContainerBasedAuthenti
             return AuthenticationResult.unsuccessful();
         }
 
+
+        
+
         AuthenticationResult authenticationResult = new AuthenticationResult(name, true);
         authenticationResult.setGroups(getUserGroups(authentication));
 
